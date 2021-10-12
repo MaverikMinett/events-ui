@@ -1,0 +1,46 @@
+
+.mat-card.bte-banner-card {
+    .mat-card-header {
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
+
+.mat-card.bte-card {
+    position: static;
+    display: block;
+    width: auto;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 45px 30px;
+    border-color: #e4ecf6;
+    box-shadow: 0 10px 25px 0 rgb(70 82 116 / 12%);
+}
+
+.bte-card-2,
+.mat-card.bte-card-2 {
+    border-radius: 5px;
+    background-color: #f4f5f9;
+    box-shadow: 0 6px 6px 0 rgba(0,0,0,.17),0 6px 6px 0 rgba(0,0,0,.15);
+
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.mat-card.message-card {
+    text-align: center;
+    margin: 40px 0px;
+
+    fon
+
+    .message {
+        font-size: 18px;
+    }
+    .content {
+        margin-top: 40px;
+    }
+}
+
+

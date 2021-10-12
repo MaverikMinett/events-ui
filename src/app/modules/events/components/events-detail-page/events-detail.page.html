@@ -1,0 +1,125 @@
+
+
+
+
+
+<div class="page-container" *ngIf="event">
+    <div class="page-nav">
+        <a routerLink="/events" class="nav-link">← All Events</a>
+    </div>
+
+    <div class="page-header events-page-header">
+        <div class="events-page-header-date">
+            <div class="date-day">
+                {{ event.time_start | date: "d" }}
+            </div>
+            <div class="date-month">
+                {{ event.time_start | date: "LLL" }}
+            </div>
+        </div>
+        <div class="page-title">
+            {{ event?.name }}
+        </div>
+        <div class="page-actions">
+
+        </div>
+    </div>
+
+    <div class="page-banner"
+    [ngStyle]="{'background-image': 'url(assets/banners/'+ event.id + '.jpg)'}"
+    >
+
+    </div>
+
+    
+
+    <div class="page-quick-links quick-links">
+
+        <a class="quick-link quick-link-event-date" (click)="downloadCalendarFile()">
+            <div class="quick-link-icon">
+                <mat-icon>schedule</mat-icon>
+            </div>
+            <div class="quick-link-content">
+                <div> {{ event.time_start | date: "EEE, MMMM d h:mm" }}{{ event.time_start | date : 'a' | lowercase }}</div>
+                <div>— {{ event.time_end | date: "EEE, MMMM d h:mm" }}{{ event.time_end | date : 'a' | lowercase }}</div>
+            </div>
+        </a>
+
+
+        <a class="quick-link quick-link-event-date" href="http://maps.google.com/?q={{event.location_address}}" target="_blank">
+            <div class="quick-link-icon">
+                <mat-icon>place</mat-icon>
+            </div>
+            <div class="quick-link-content">
+                <div>{{ event.location_name }}</div>
+                <div>{{ event.location_address }}</div>
+            </div>
+        </a>
+
+
+        <div class="quick-link quick-link-event-date">
+            <div class="quick-link-icon">
+                <mat-icon>forum</mat-icon>
+            </div>
+            <div class="quick-link-content">
+                <div class="line-clamp" *ngIf="event.contact_email"><a href="mailto:{{event.contact_email}}?subject={{event.name}}">{{event.contact_email}}</a></div>
+                <div class="line-clamp" *ngIf="event.contact_phone"><a href="tel:{{event.contact_phone}}">{{ event.contact_phone }}</a></div>
+            </div>
+        </div>
+
+
+
+        <a class="quick-link quick-link-get-tickets" routerLink="register" *ngIf="event.tickets?.length">
+            <div class="quick-link-icon">
+                <mat-icon>local_play</mat-icon>
+            </div>
+            <div class="quick-link-content" >
+                Get tickets
+            </div>
+        </a>
+        
+
+    </div>
+
+
+    
+    <div class="page-content">
+        <div class="event-description" [innerHTML]="event?.description">
+
+        </div>
+
+        <div class="call-to-action-container" *ngIf="event.tickets?.length">
+            <a routerLink="register" class="bte-button call-to-action">Register Now</a>
+        </div>
+
+
+        <div class="event-section" *ngIf="event?.tickets?.length">
+            <h2>Tickets</h2>
+
+            <events-tickets [tickets]="event?.tickets">
+
+            </events-tickets>
+        </div>
+
+        <div class="event-section" *ngIf="event?.sessions?.length">
+            <h2>Sessions</h2>
+
+            <events-sessions [sessions]="event?.sessions">
+    
+    
+            </events-sessions>
+        </div>      
+
+        <div class="call-to-action-container" *ngIf="event.tickets?.length">
+            <a routerLink="register" class="bte-button call-to-action">Register Now</a>
+        </div>
+
+    </div>    
+
+    <div class="page-footer">
+        Made for Blackthorn.io by Maverik Minett 2021
+    </div>
+</div>
+
+
+

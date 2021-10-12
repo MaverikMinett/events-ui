@@ -1,0 +1,51 @@
+a, a:visited {
+    text-decoration: none;
+    color: var(--text-color-default);
+}
+
+
+.nav-link, .nav-link:visited {
+    transition:300ms;
+    font-family: var(--font-family-default);
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: var(--color-green);
+    text-decoration: underline;
+    outline-color:  var(--color-green);
+    text-decoration-color:  var(--color-green);
+
+}
+
+.quick-links {
+    @include flex(row);
+    justify-content: space-between;
+}
+
+
+
+.quick-link {
+    padding: 20px 10px;
+    @include flex(row, initial, left, center);
+    font-size: 12px;
+    
+}
+
+a.quick-link:hover,
+.quick-link a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.quick-link-icon {
+    .mat-icon {
+        @include icon-size(32px);
+    }
+}
+
+.quick-link-content {
+    padding-left: 16px;
+}
+

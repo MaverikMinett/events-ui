@@ -1,0 +1,94 @@
+
+/* from blackthorn.io */
+.bte-button {
+    display: inline-block;
+    height: 48px;
+    margin-top: 0;
+    padding: 12px 24px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: box-shadow .4s;
+    font-family: Poppins,sans-serif;
+    color: #2c3340;
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 250px;
+    border: 1px solid #e4ecf6;
+    cursor: pointer;
+    transition: 300ms;
+
+
+    &:hover {
+        color: var(--color-green);
+
+        box-shadow: 0 10px 25px 0 rgb(70 82 116 / 12%);
+    }
+
+    &.call-to-action {
+        color: var(--color-green);
+    }
+
+}
+
+.button-dimiss {
+    .mat-icon {
+        transition: 300ms;
+    }
+}
+.button-dismiss:hover {
+    .mat-icon {
+        color: var(--color-green);
+    }
+}
+
+/* modified from blackthorn.io */
+.button-submit {
+    
+
+    width: 175px;
+    margin-bottom: .75rem;
+    border-radius: 4px;
+    transition: 350ms;
+    font-family: var(--font-family-default);
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 9px 15px;
+
+    background-color: var(--color-blue);
+    border: 1px solid var(--color-blue);
+    color: white;
+
+    letter-spacing: 1px;
+
+    &:not(:disabled) {
+        cursor: pointer;
+    }
+
+    &:disabled {
+        background-color: gray;
+        border-color: gray;
+    }
+
+
+    &:not(:disabled):hover {
+        background-color: rgba(0, 0, 0, 0);
+        color: var(--color-blue);
+        outline-color: var(--color-blue);
+        text-decoration-color: var(--color-blue);
+    }
+
+
+
+}

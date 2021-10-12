@@ -1,0 +1,11 @@
+<h1 mat-dialog-title *ngIf="title">{{ title }}</h1>
+<h1 mat-dialog-title *ngIf="! title">Error</h1>
+
+<div mat-dialog-content>
+    <p class="error-message" *ngFor="let text of paragraphs">{{ text }}</p>
+</div>
+
+
+<div mat-dialog-actions>
+    <button mat-button (click)="close()" color="primary" class="close primary">Close</button>
+</div>

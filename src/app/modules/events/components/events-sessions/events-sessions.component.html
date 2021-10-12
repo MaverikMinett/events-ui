@@ -1,0 +1,44 @@
+
+
+<ng-container *ngIf="! sessions?.length">
+    There are no available sessions for this event
+</ng-container>
+
+<ng-container *ngIf="sessions?.length">
+    <div class="sessions-list">
+        <div *ngFor="let session of sessions" class="list-item">
+
+            <div class="item-icon">
+                <mat-icon>menu_book</mat-icon>
+            </div>
+
+            <div class="item-content">
+                <div class="item-label">
+                    {{ session.label }}
+                </div>
+    
+                <div class="item-description">
+                    {{ session.description | striphtml }}
+                </div>
+    
+            </div>
+
+
+            <div class="item-status">
+                <ng-container *ngIf="session?.status === 'open'">
+                    <ng-container *ngIf="session?.price == 0">
+                        Free
+                    </ng-container>
+                    <ng-container *ngIf="session?.price != 0">
+                        {{ session.price | currency }}
+                    </ng-container>
+                </ng-container>
+                <ng-container *ngIf=" session && session.status !== 'open'">
+                    {{ session.status | titlecase }}
+                </ng-container>
+            </div>
+
+            
+        </div>
+    </div>
+</ng-container>

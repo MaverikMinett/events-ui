@@ -1,0 +1,82 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$blackthorn-ui-primary: mat.define-palette(mat.$blue-palette, A700);
+$blackthorn-ui-accent: mat.define-palette(mat.$light-green-palette);
+
+// The warn palette is optional (defaults to red).
+$blackthorn-ui-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$blackthorn-ui-theme: mat.define-light-theme((
+  color: (
+    primary: $blackthorn-ui-primary,
+    accent: $blackthorn-ui-accent,
+    warn: $blackthorn-ui-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($blackthorn-ui-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+
+@import "~@fontsource/poppins/400";
+@import "~@fontsource/poppins/500";
+@import "./styles/vars";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: "Poppins", sans-serif; color: var(--text-color-default); }
+
+
+/* typographic */
+$typo-h2: mat.define-typography-level(
+  $font-family:  "Poppins",
+  $font-weight: 400,
+  $font-size: 25px,
+  $line-height: 2,
+  $letter-spacing: 1px,
+);
+
+$typo-config: mat.define-typography-config(
+  $title: $typo-h2
+);
+
+@include mat.core($typo-config);
+
+  // $display-4: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  // $display-3: mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  // $display-2: mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  // $display-1: mat.define-typography-level(34px, 40px, 400),
+  // $headline:  mat.define-typography-level(24px, 32px, 400),
+
+
+@import "./styles/core/mixins";
+@import "./styles/core/layout";
+@import "./styles/core/buttons";
+@import "./styles/core/pages";
+@import "./styles/core/cards";
+@import "./styles/core/icons";
+@import "./styles/core/links";
+
+@import "./styles/events/events-page";
+@import "./styles/events/events-detail";
+@import "./styles/events/events-list";
+@import "./styles/events/events-registration";
+
+

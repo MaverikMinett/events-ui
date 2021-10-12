@@ -1,0 +1,47 @@
+
+ 
+html, body {
+    margin: 0px;
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    @include flex(column, 1);
+    margin: 0px;
+}
+
+body { 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: #f4f5f9;
+}
+
+app-root {
+    @include flex(column, 1);
+}
+
+router-outlet + * {
+    @include flex(column, 1);
+}
+
+form {
+    @include flex(column);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+img {
+    max-width: 100%;
+}
+
+.spacer {
+    flex: 1;
+}
+
+
+h2 {
+    margin: 20px 0px;
+}

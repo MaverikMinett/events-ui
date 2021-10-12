@@ -1,0 +1,118 @@
+.attendee-form-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+
+    .field-company, .field-ticket, .section-sessions {
+        grid-column: span 2;
+    }
+
+
+}
+
+
+
+
+.mat-card.register-attendee-card {
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    position: relative;
+
+    .attendee-form-group-header {
+        color: var(--color-green);
+        padding: 10px 0px;
+        font-weight: 500;
+    }
+
+    .form-group {
+        .section-header {
+            padding: 10px 0px;
+            font-weight: 500;
+            color: var(--color-orange);
+        }
+    }
+
+    .attendee-remove {
+        right: 0px;
+        top: 0px;
+        position: absolute;
+    }
+
+    .attendee-form-group-summary {
+        text-align: right;
+
+        padding: 10px 0px;
+
+        font-size: 16px;
+
+        .value {
+            min-width: 100px;
+            margin-left: 12px;
+        }
+    }
+}
+
+.mat-option.option-ticket {
+    .mat-option-text {
+        @include flex(row);
+        width: 100%!important;
+    }
+    .option-ticket-label {
+        flex: 1;
+    }
+}
+
+.field-session {
+
+    padding: 5px 0px;
+
+    &:hover {
+        background-color: var(--color-hover-background-nuetral);
+    }
+
+    .mat-checkbox,
+    .mat-checkbox > label {
+        @include flex(row);
+        width: 100%;
+    }
+
+    .mat-checkbox-label {
+        @include flex(row, 1);
+
+        .session-label {
+            flex: 1;
+        }
+    }
+}
+
+
+.form-actions.events-registration {
+    .secondary-actions {
+        padding: 10px 0px;
+        @include flex(row);
+        justify-content: space-between;
+        align-items: center;
+
+        .form-summary-total-price {
+            text-align: right;
+
+            padding: 10px 0px;
+    
+            font-size: 17px;
+
+            margin-right: 30px;
+    
+            .value {
+                min-width: 100px;
+                margin-left: 12px;
+                
+            }
+        }
+    }
+
+    .primary-actions {
+        padding: 10px 0px;
+        margin-top: 10px;
+    }
+}

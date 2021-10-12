@@ -1,0 +1,81 @@
+
+
+.mat-card.event-details-card {
+    width: 850px;
+}
+
+.event-description {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.event-section {
+    margin-bottom: 20px;
+}
+
+.call-to-action-container {
+    text-align: center;
+}
+
+
+.tickets-list,
+.sessions-list {
+
+    .list-item {
+        @include flex(row);
+        position: relative;
+
+        border-bottom: 1px solid gray;
+    }
+
+    .item-content {
+        margin-left: var(--list-content-margin-left);
+        margin-right: var(--list-content-margin-right);
+        padding: 13px 16px 11px;
+        flex: 1;
+    }
+
+    .item-icon {
+        width: 36px;
+        margin: 16px;
+        @include flex(column);
+        align-items: center;
+        position: absolute;
+
+        .mat-icon {
+            font-size: 32px;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            transform: rotate(-30deg);
+        }
+    }
+
+    .item-status {
+        margin-bottom: 16px;
+        margin-left: 24px;
+        margin-right: 16px;
+        margin-top: 16px;
+        align-items: center;
+        position: absolute;
+        display: flex;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+    }
+
+    .item-label {
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+}
+
+
+.quick-link-get-tickets {
+    font-size: 16px;
+    line-height: 16px;
+
+    .quick-link-content {
+        margin-top: -4px;
+    }
+}

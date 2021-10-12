@@ -1,0 +1,44 @@
+
+
+<ng-container *ngIf="! tickets?.length">
+    There are no available tickets for this event
+</ng-container>
+
+<ng-container *ngIf="tickets?.length">
+    <div class="tickets-list">
+        <div *ngFor="let ticket of tickets" class="list-item">
+
+            <div class="item-icon">
+                <mat-icon>local_activity</mat-icon>
+            </div>
+
+            <div class="item-content">
+                <div class="item-label">
+                    {{ ticket.label }}
+                </div>
+    
+                <div class="item-description">
+                    {{ ticket.description | striphtml }}
+                </div>
+    
+            </div>
+
+
+            <div class="item-status">
+                <ng-container *ngIf="ticket?.status === 'open'">
+                    <ng-container *ngIf="ticket?.price == 0">
+                        Free
+                    </ng-container>
+                    <ng-container *ngIf="ticket?.price != 0">
+                        {{ ticket.price | currency }}
+                    </ng-container>
+                </ng-container>
+                <ng-container *ngIf=" ticket && ticket.status !== 'open'">
+                    {{ ticket.status | titlecase }}
+                </ng-container>
+            </div>
+
+            
+        </div>
+    </div>
+</ng-container>

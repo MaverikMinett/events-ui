@@ -1,0 +1,48 @@
+
+
+<div class="page-container valign-center">
+    <div class="page-content">
+
+
+        <mat-card class="bte-card events-list-card">
+
+            <mat-card-header>
+                <mat-card-title>Events</mat-card-title>
+            </mat-card-header>
+        
+            <mat-card-content>
+        
+                <div class="events-list">
+                    
+                    <a class="events-list-item" *ngFor="let event of events; let i = index" [routerLink]="[event.id]">
+                        <div class="date-col">
+                            <div class="date-day">
+                                {{ event.time_start | date: "d" }}
+                            </div>
+                            <div class="date-month">
+                                {{ event.time_start | date: "LLL" }}
+                            </div>
+                        </div>
+                        <div class="details-col">
+                            <div class="event-name">
+                                {{ event.name }}
+                            </div>
+                            <div class="event-date">
+                                {{ event.time_start | date: "EEE, MMMM d h:mma" }} - {{ event.time_end | date: "EEE, MMMM d h:mma" }}
+                            </div>
+                            <div class="event-description-summary">
+                                {{ event.description | striphtml }}
+                            </div>
+                        </div>
+                        <div class="thumbnail-col">
+                            <img src="./assets/thumbnails/{{event.id}}.jpeg">
+                        </div>
+                    </a>
+                </div>
+        
+            </mat-card-content>
+        
+        </mat-card>
+        
+    </div>
+</div>

@@ -1,0 +1,47 @@
+
+/* implementation for align and valign incomplete */
+@mixin flex($direction, $flex: initial, $align: left, $valign: top) {
+    display: flex;
+    flex-direction: $direction;
+    flex: $flex;
+
+    
+    @if $direction == row  {
+        @if $valign == center {
+            align-items: center;
+        }
+    }
+}
+
+@mixin icon-size($size) {
+    font-size: $size;
+    width: $size;
+    height: $size;
+    line-height: $size;
+}
+
+@mixin line-clamp($lines: 1) {
+	@if $lines == 1 {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+    @if $lines > 1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;  
+    }
+
+}
+
+.flex-row {
+    @include flex(row);
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.line-clamp {
+    @include line-clamp(1)
+}

@@ -1,0 +1,231 @@
+
+
+<div class="page-container" *ngIf="event">
+    <div class="page-nav">
+        <a [routerLink]="['..']" class="nav-link">← Back to event page</a>
+    </div>
+
+
+    <div class="page-header">
+        <div class="page-title">
+            {{ event?.name }}
+        </div>
+        <div class="page-subtitle" *ngIf="event">
+            {{ event.time_start | date: "EEE, MMMM d h:mm" }}{{ event.time_start | date : 'a' | lowercase }} — {{ event.time_end | date: "EEE, MMMM d h:mm" }}{{ event.time_end | date : 'a' | lowercase }}
+        </div>
+    </div>
+
+    <h2>Event Registration</h2>
+
+    <div class="page-content"  *ngIf="formState == 'success'">
+
+        <mat-card class="bte-card message-card">
+            <div class="message">Registration successful</div>
+            <div class="content">
+                <a routerLink="/events" class="nav-link">See more events →</a>
+            </div>
+        </mat-card>
+
+
+
+
+    </div>
+
+
+    <div class="page-content" *ngIf="formState != 'success'">
+
+
+        <form>
+
+
+            <div class="attendees-section">
+               
+
+                <mat-card *ngFor="let attendee of attendees; let i = index" class="bte-card register-attendee-card">
+                    <div class="attendee-form-group-header form-group-header">
+                        <div class="attendee-index">Attendee #{{i+1}}</div>
+                    </div>
+                    <div class="attendee-form-group form-group">
+
+                        <mat-form-field class="field-first-name">
+                            <input matInput type="text"
+                                placeholder="First"
+                                [formControl]="getFormControl(i,'first_name')"
+                                required=true
+                                maxlength="64">
+                                <mat-error *ngIf="getFormControl(i,'first_name').errors?.required">This field is required</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="field-last-name">
+                            <input matInput type="text"
+                                placeholder="Last"
+                                [formControl]="getFormControl(i,'last_name')"
+                                required=true
+                                maxlength="64">
+                                <mat-error *ngIf="getFormControl(i,'last_name').errors?.required">This field is required</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="field-email">
+                            <input matInput type="text"
+                                placeholder="Email"
+                                [formControl]="getFormControl(i,'email')"
+                                required=true
+                                maxlength="64">
+                                <mat-error *ngIf="getFormControl(i,'email').errors?.required">This field is required</mat-error>
+                                <mat-error *ngIf="getFormControl(i,'email').errors?.email">Enter a valid email address</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="field-phone">
+                            <input matInput type="text"
+                                placeholder="Phone"
+                                [formControl]="getFormControl(i,'phone')"
+                                maxlength="32"
+                                >
+                        </mat-form-field>
+
+                        <mat-form-field class="field-company">
+                            <input matInput type="text"
+                                placeholder="Company"
+                                [formControl]="getFormControl(i,'company')"
+                                maxlength="128"
+                                >
+                        </mat-form-field>
+
+                        <mat-form-field class="field-ticket">
+                            <mat-select 
+                            placeholder="Ticket"
+                            [formControl]="getFormControl(i,'ticket')"
+                            required=true>
+                                <mat-option 
+                                *ngFor="let ticket of event.tickets" 
+                                [value]="ticket"
+                                [disabled]="ticket.status != 'open'"
+                                class="option-ticket">
+                                    <span class="option-ticket-label">{{ ticket.label }}</span>
+                                    <span class="option-ticket-status"> 
+                                        
+                                        <ng-container *ngIf="ticket.status == 'open'">
+                                            <ng-container *ngIf="ticket.price === 0">
+                                                Free
+                                            </ng-container>
+                                            <ng-container *ngIf="ticket.price !== 0">
+                                                {{ ticket.price | currency }}
+                                            </ng-container>
+                                            
+                                        </ng-container>
+                                        <ng-container *ngIf="ticket.status != 'open'">
+                                            {{ ticket.status | titlecase }}
+                                        </ng-container>
+
+                                    </span>
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="getFormControl(i,'ticket').errors?.required">This field is required</mat-error>
+                        </mat-form-field>
+
+
+                        <div class="section section-sessions" *ngIf="event?.sessions?.length">
+                            <div class="section-header">
+                                Sessions
+                            </div>
+                            <div class="section-content">
+                                <div class="field-session" 
+                                *ngFor="let session of event.sessions; let j = index"
+                                >
+
+                                    <mat-checkbox 
+                                        (click)="toggleSessionCheckbox(i,j)"
+                                        [disabled]="session.status != 'open'"
+                                    >
+                                        <div class="session-label">
+                                            {{ session.label }}
+                                        </div>
+                                        
+                                        <div class="session-status">
+
+                                            <ng-container *ngIf="session.status == 'open'">
+                                                <ng-container *ngIf="session.price === 0">
+                                                    Free
+                                                </ng-container>
+                                                <ng-container *ngIf="session.price !== 0">
+                                                    {{ session.price | currency }}
+                                                </ng-container>
+                                                
+                                            </ng-container>
+                                            <ng-container *ngIf="session.status != 'open'">
+                                                {{ session.status | titlecase }}
+                                            </ng-container>
+                                            
+                                        </div>
+
+                                    </mat-checkbox>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="attendee-form-group-summary">
+                        <span class="label">Attendee total:</span>
+                        
+                        <span class="value">{{ attendee.total_price | currency }}</span>
+                    </div>
+
+
+                    <div class="attendee-remove">
+                        <button 
+                            type="button" 
+                            class="button-dismiss" 
+                            mat-icon-button
+                            (click)="removeAttendee(i)"
+                            aria-label="Close">
+                            <mat-icon class="close">close</mat-icon>
+                        </button>
+                    </div>
+                </mat-card>
+
+
+
+
+                <div class="form-actions events-registration">
+                    
+                    <div class="secondary-actions">
+                        <div>   
+                            <button class="bte-button" (click)="addAttendee()" type="button">Add attendee</button>
+                        </div>
+                        <div class="form-summary-total-price" *ngIf="attendees?.length">
+                            <span class="label">Registration total:</span>
+                            
+                            <span class="value">{{ sumTotalPrice | currency }}</span>
+                        </div>
+                        
+                    </div>
+
+                    <div class="primary-actions">
+                        <span matTooltip="Complete the form before submiting" [matTooltipDisabled]="formControls.valid" matTooltipPosition="right">
+
+                        
+                            <button  type="button" 
+                                class="button-submit"
+                                [disabled]="! formControls.valid || formState == 'pending' || ! attendees?.length " 
+                                (click)="submit()">Submit</button>
+
+                        </span>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </form>
+    </div>    
+
+    <div class="page-footer">
+        Made for Blackthorn.io by Maverik Minett 2021
+    </div>
+</div>
+
+
+
