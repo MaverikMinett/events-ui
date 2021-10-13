@@ -8,7 +8,6 @@ process.env.PWD = process.cwd()
 app.use( cors({origin: '*'}) )
 app.use( express.json() )
 app.use( express.urlencoded({ extended: true }))
-app.use("/",express.static(process.cwd() + "/blackthorn-ui") )
 
 /* logging */
 app.use( 
@@ -17,6 +16,15 @@ app.use(
         next()
     }
 )
+
+app.use("/",express.static(process.cwd() + "/blackthorn-ui") )
+app.use("*", 
+    (request: Request, response: Response, next:NextFunction ) => {
+        response.sendFile(process.cwd() + "/blackthorn-ui/index.html");
+    }
+)
+
+
 
 app.listen(port);  
        
