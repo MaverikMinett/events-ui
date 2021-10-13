@@ -22,14 +22,24 @@
     .attendee-form-group-header {
         color: var(--color-green);
         padding: 10px 0px;
+
+        font-family: Poppins,sans-serif;
+        font-size: 14px;
+        line-height: 24px;
         font-weight: 500;
+        letter-spacing: 1px;
     }
 
     .form-group {
         .section-header {
             padding: 10px 0px;
             font-weight: 500;
-            color: var(--color-orange);
+            color: var(--color-blue);
+            font-family: Poppins,sans-serif;
+            font-size: 14px;
+            line-height: 24px;
+            font-weight: 500;
+            letter-spacing: 1px;
         }
     }
 
