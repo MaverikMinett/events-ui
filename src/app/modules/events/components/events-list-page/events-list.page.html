@@ -4,7 +4,11 @@
     <div class="page-content">
 
 
-        <mat-card class="bte-card events-list-card">
+        <div *ngIf="! events" style="text-align: center">
+            Loading...
+        </div>
+
+        <mat-card class="bte-card events-list-card" *ngIf="events">
 
             <mat-card-header>
                 <mat-card-title>Events</mat-card-title>
